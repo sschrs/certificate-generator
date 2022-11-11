@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Süleyman Özarslan",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^21.2.3"
+  }
 }
