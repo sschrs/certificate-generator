@@ -37,8 +37,11 @@
             <div class="col-md-6">
                 <a href="#" id="upload-certificate-link">
                     <div id="certificate-overview-area">
-                        <i id="upload-certificate-icon" class="fa-solid fa-upload"></i>
-                        <h6 href="#" id="upload-certificate-text">Upload a Certificate Draft</h4>
+                        <canvas id="certificate-canvas" width="475px" height="336px"></canvas>
+                        <div id="no-certificate-area">
+                            <i id="upload-certificate-icon" class="fa-solid fa-upload"></i>
+                            <h6 href="#" id="upload-certificate-text">Upload a Certificate Draft</h4>
+                        </div>
                     </div>
                 </a>
                 <div class="row mt-3">
@@ -67,9 +70,14 @@
             </div>
         </div>
     </div>
+    <div class="w-100" style="text-align: right;font-size:10px">
+        <small class="text-muted">by Süleyman Özarslan</small>
+    </div>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/jquery-3.6.1.min.js"></script>
+    <script src="../controllers/mainWindow.js"></script>
     <script>if (window.module) module = window.module;</script>
 </body>
 </html>
