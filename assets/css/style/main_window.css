@@ -1,12 +1,13 @@
 body{
     background-color: #061626;
     color: whitesmoke;
-    padding: 15px;
+    padding: 25px;
 }
 
 a{
     text-decoration: none;
 }
+
 
 #certificate-overview-area{
     width: 475px;
@@ -28,7 +29,16 @@ a{
     text-decoration: none;
 }
 
+#name-list{
+    overflow: auto;
+    height: 85vh;
+}
+
 .form-control{
     background-color: #061626;
     color: whitesmoke;;
+}
+
+.remove-list-item{
+    text-align: right;
 }
