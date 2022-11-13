@@ -1,0 +1,11 @@
+body{
+    background-color: #061626;
+    color: whitesmoke;
+    padding: 15px;
+}
+
+#certificate-overview-area{
+    width: 475px;
+    height: 336px;
+    border: 1px solid whitesmoke;
+}
