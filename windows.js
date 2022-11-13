@@ -1,4 +1,4 @@
-const { BrowserWindow } = require("electron")
+const { BrowserWindow, ipcMain, dialog } = require("electron")
 
 createWindow = (data, filepath)=>{
     const newWindow = new BrowserWindow(data)
@@ -17,4 +17,14 @@ exports.mainWindow = ()=>{
             enableRemoteModule: true
         }
     }, "pages/mainWindow.html")
+
+    ipcMain.on("file", async(event,arg)=>{
+        await dialog.showOpenDialog(window, {
+            properties: ['openDirectory','openFile']
+        }).then((result)=>{
+            path = result.filePaths[0]
+            window.webContents.send("selected", path)
+        })         
+    })
+
 }
