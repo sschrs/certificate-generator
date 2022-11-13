@@ -4,8 +4,31 @@ body{
     padding: 15px;
 }
 
+a{
+    text-decoration: none;
+}
+
 #certificate-overview-area{
     width: 475px;
     height: 336px;
     border: 1px solid whitesmoke;
+    text-align: center
+}
+
+#upload-certificate-icon{
+    font-size: 72px;
+    color: #606B79;
+    margin-top: 100px;
+}
+
+#upload-certificate-text{
+    color: #606B79;
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.form-control{
+    background-color: #061626;
+    color: whitesmoke;;
 }
