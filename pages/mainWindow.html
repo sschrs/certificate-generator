@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style/main_window.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+    <title>Certificate Generator</title>
+</head>
+<body>
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+                <a href="#" id="upload-certificate-link">
+                    <div id="certificate-overview-area">
+                        <i id="upload-certificate-icon" class="fa-solid fa-upload"></i>
+                        <h6 href="#" id="upload-certificate-text">Upload a Certificate Draft</h4>
+                    </div>
+                </a>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <input class="form-control" list="fontlist" id="font" placeholder="Font">
+                        <datalist id="fontlist">
+                            <option value="Times New Roman">
+                        </datalist>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <input id="fontsize" type="number" class="form-control" placeholder="Font Size">
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <input type="color" class="form-control form-control-color w-100" id="color" value="#563d7c" title="Text Color">
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        <input type="file" class="form-control" multiple>
+                    </div>
+                    <div class="col-md-6 mt-4">
+                        <button class="btn btn-outline-danger w-100">Reset All</button>
+                    </div>
+                    <div class="col-md-6 mt-4">
+                        <button class="btn btn-outline-success w-100">Generate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+</body>
+</html>
