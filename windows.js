@@ -27,4 +27,8 @@ exports.mainWindow = ()=>{
         })         
     })
 
+    ipcMain.on("reset", ()=>{
+        window.reload()
+    })
+
 }
