@@ -5,7 +5,7 @@ $(window).on("load",()=>{
     var certificate_canvas = document.getElementById("certificate-canvas")
     var upload_link = document.getElementById("upload-certificate-link")
     var img = new Image;
-
+    var colorPicker = document.getElementById("color-picker")
     function fileUpload(){
         ipcRenderer.send("file")
     }
@@ -50,7 +50,7 @@ $(window).on("load",()=>{
 
                 if (selected_points.length == 2){
                    drawRectangle()
-                   drawText("John Doe", "Times New Roman", 20, "#563d7c")
+                   drawText("John Doe", "Times New Roman", 20, colorPicker.value)
                 }
             }
         })
