@@ -19,6 +19,17 @@ $(window).on("load",()=>{
         ctx.rect(x, y, width, height)
         ctx.stroke()
     }
+
+    function drawText(text, font, font_size, color){
+        x1 = selected_points[0].x
+        y1 = selected_points[0].y
+        x2 = selected_points[1].x
+        y2 = selected_points[1].y
+        ctx.font = font_size + "px " + font
+        ctx.textAlign = "center"
+        ctx.fillStyle = color
+        ctx.fillText(text, x2-((x2-x1)/2), y2-((y2-y1)/2))
+    }
     
     img.onload = ()=>{
         ctx.drawImage(img,-1,-1, 474, 335)
@@ -39,6 +50,7 @@ $(window).on("load",()=>{
 
                 if (selected_points.length == 2){
                    drawRectangle()
+                   drawText("John Doe", "Times New Roman", 20, "#563d7c")
                 }
             }
         })
