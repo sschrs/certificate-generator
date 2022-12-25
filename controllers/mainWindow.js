@@ -57,9 +57,16 @@ $(window).on("load",()=>{
         })
     })
 
+    $(".text-style").on("change", ()=>{
+        ctx.drawImage(img,-1,-1, 474, 335)
+        drawRectangle()
+        drawText("John Doe", "Times New Roman", fontsize.value, colorPicker.value)
+    })
+
     document.getElementById("reset-button").addEventListener("click", ()=>{
         ipcRenderer.send("reset")
     })
+    
 })
 
 
