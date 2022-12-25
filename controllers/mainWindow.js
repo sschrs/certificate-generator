@@ -7,6 +7,7 @@ $(window).on("load",()=>{
     var img = new Image;
     var colorPicker = document.getElementById("color-picker")
     var fontsize = document.getElementById("fontsize")
+    var fontfamily = document.getElementById("fontfamily")
     function fileUpload(){
         ipcRenderer.send("file")
     }
@@ -51,7 +52,7 @@ $(window).on("load",()=>{
 
                 if (selected_points.length == 2){
                    drawRectangle()
-                   drawText("John Doe", "Times New Roman", fontsize.value, colorPicker.value)
+                   drawText("John Doe", fontfamily.value, fontsize.value, colorPicker.value)
                 }
             }
         })
@@ -60,7 +61,7 @@ $(window).on("load",()=>{
     $(".text-style").on("change", ()=>{
         ctx.drawImage(img,-1,-1, 474, 335)
         drawRectangle()
-        drawText("John Doe", "Times New Roman", fontsize.value, colorPicker.value)
+        drawText("John Doe", fontfamily.value, fontsize.value, colorPicker.value)
     })
 
     document.getElementById("reset-button").addEventListener("click", ()=>{
