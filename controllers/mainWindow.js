@@ -1,35 +1,35 @@
 $(window).on("load",()=>{
     const { ipcRenderer } = require("electron")
-    var selected_points = []
-    var ctx = document.getElementById("certificate-canvas").getContext("2d")
-    var certificate_canvas = document.getElementById("certificate-canvas")
-    var upload_link = document.getElementById("upload-certificate-link")
-    var img = new Image;
-    var colorPicker = document.getElementById("color-picker")
-    var fontsize = document.getElementById("fontsize")
-    var fontfamily = document.getElementById("fontfamily")
+    let selected_points = []
+    let ctx = document.getElementById("certificate-canvas").getContext("2d")
+    let certificate_canvas = document.getElementById("certificate-canvas")
+    let upload_link = document.getElementById("upload-certificate-link")
+    let img = new Image;
+    let colorPicker = document.getElementById("color-picker")
+    let fontsize = document.getElementById("fontsize")
+    let fontfamily = document.getElementById("fontfamily")
     var selected_dest = "./";
-    var name_list = []
+    let name_list = []
     
     function fileUpload(){
         ipcRenderer.send("file")
     }
 
     function drawRectangle(){
-        x = selected_points[0].x
-        y = selected_points[0].y
-        width = selected_points[1].x - x
-        height = selected_points[1].y - y
+        let x = selected_points[0].x
+        let y = selected_points[0].y
+        let width = selected_points[1].x - x
+        let height = selected_points[1].y - y
         ctx.beginPath()
         ctx.rect(x, y, width, height)
         ctx.stroke()
     }
 
     function drawText(text, font, font_size, color){
-        x1 = selected_points[0].x
-        y1 = selected_points[0].y
-        x2 = selected_points[1].x
-        y2 = selected_points[1].y
+        let x1 = selected_points[0].x
+        let y1 = selected_points[0].y
+        let x2 = selected_points[1].x
+        let y2 = selected_points[1].y
         ctx.font = font_size + "px " + font
         ctx.textAlign = "center"
         ctx.fillStyle = color
@@ -37,15 +37,16 @@ $(window).on("load",()=>{
     }
 
     const updateList = ()=>{
-        var table = document.getElementById("name-table");
-        var tableBody = document.createElement("tbody");
+        let table = document.getElementById("name-table");
+        table.innerHTML = "";
+        let tableBody = document.createElement("tbody");
 
         for (let i=0;i<name_list.length;i++){
-            var row = document.createElement("tr");
-            var number = document.createElement("td");
+            let row = document.createElement("tr");
+            let number = document.createElement("td");
             number.innerText = (i+1).toString();
 
-            var name = document.createElement("td");
+            let name = document.createElement("td");
             name.innerText = name_list[i];
 
             row.appendChild(number);
@@ -56,8 +57,16 @@ $(window).on("load",()=>{
         table.appendChild(tableBody);
     }
 
-    updateList()
+    updateList();
     
+    const addName = ()=>{
+        let nameInput = document.getElementById("name-input");
+        let name = nameInput.value;
+        name_list.push(name);
+        nameInput.value = ""
+        updateList();
+    }
+
     
     img.onload = ()=>{
         ctx.drawImage(img,-1,-1, 474, 335)
@@ -102,6 +111,8 @@ $(window).on("load",()=>{
         alert()
         ipcRenderer.send("dest")
     })
+
+    $("#add-button").on("click", addName)
 
     document.getElementById("reset-button").addEventListener("click", ()=>{
         ipcRenderer.send("reset")
