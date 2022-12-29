@@ -8,6 +8,8 @@ $(window).on("load",()=>{
     var colorPicker = document.getElementById("color-picker")
     var fontsize = document.getElementById("fontsize")
     var fontfamily = document.getElementById("fontfamily")
+    var selected_dest = "./";
+    
     function fileUpload(){
         ipcRenderer.send("file")
     }
@@ -32,6 +34,8 @@ $(window).on("load",()=>{
         ctx.fillStyle = color
         ctx.fillText(text, x2-((x2-x1)/2), y2-((y2-y1)/2))
     }
+
+    
     
     img.onload = ()=>{
         ctx.drawImage(img,-1,-1, 474, 335)
@@ -58,10 +62,23 @@ $(window).on("load",()=>{
         })
     })
 
+    ipcRenderer.on("selected-dest", function(err,data){
+        selected_dest = data;
+    })
+
     $(".text-style").on("change", ()=>{
         ctx.drawImage(img,-1,-1, 474, 335)
         drawRectangle()
         drawText("John Doe", fontfamily.value, fontsize.value, colorPicker.value)
+    })
+
+    $("#generate-button").on("click",()=>{
+        generate()
+    })
+
+    $("#dest").on("click", ()=>{
+        alert()
+        ipcRenderer.send("dest")
     })
 
     document.getElementById("reset-button").addEventListener("click", ()=>{

@@ -27,6 +27,15 @@ exports.mainWindow = ()=>{
         })         
     })
 
+    ipcMain.on("dest", async(event,arg)=>{
+        await dialog.showOpenDialog(window, {
+            properties: ['openDirectory']
+        }).then((result)=>{
+            path = result.filePaths[0]
+            window.webContents.send("selected-dest", path)
+        })         
+    })
+
     ipcMain.on("reset", ()=>{
         window.reload()
     })
