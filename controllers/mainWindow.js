@@ -58,7 +58,36 @@ $(window).on("load",()=>{
     }
 
     updateList();
-    
+
+    const canvasToImage = (name)=>{
+        temp_canvas = document.createElement("canvas")
+        temp_canvas.width = 474 * 4;
+        temp_canvas.height = 335 * 4;
+        temp_ctx = temp_canvas.getContext("2d");
+        temp_ctx.drawImage(img,-1,-1, 474*4, 335*4)
+        let x1 = selected_points[0].x * 4
+        let y1 = selected_points[0].y * 4
+        let x2 = selected_points[1].x * 4
+        let y2 = selected_points[1].y * 4
+        temp_ctx.font = (fontsize.value * 4) + "px " + fontfamily.value
+        temp_ctx.textAlign = "center"
+        temp_ctx.fillStyle = colorPicker.value
+        temp_ctx.fillText(name, x2-((x2-x1)/2), y2-((y2-y1)/2))
+        const base64URL = temp_canvas.toDataURL();
+        ipcRenderer.send("to-image", {
+            path: selected_dest,
+            base64URL,
+            name
+        })
+    }
+
+    const generate = ()=>{
+        name_list.forEach(name => {
+            canvasToImage(name)
+        });
+    }
+
+
     const addName = ()=>{
         let nameInput = document.getElementById("name-input");
         let name = nameInput.value;
@@ -67,7 +96,6 @@ $(window).on("load",()=>{
         updateList();
     }
 
-    
     img.onload = ()=>{
         ctx.drawImage(img,-1,-1, 474, 335)
     }
@@ -108,7 +136,6 @@ $(window).on("load",()=>{
     })
 
     $("#dest").on("click", ()=>{
-        alert()
         ipcRenderer.send("dest")
     })
 

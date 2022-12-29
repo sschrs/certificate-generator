@@ -36,6 +36,13 @@ exports.mainWindow = ()=>{
         })         
     })
 
+    ipcMain.on("to-image", (err,data)=>{
+        var base64Data = data.base64URL.replace(/^data:image\/png;base64,/, "");
+        require("fs").writeFile(data.path + "/"+data.name+".png", base64Data, 'base64', function(err) {
+            console.log(err);
+        });
+    })
+
     ipcMain.on("reset", ()=>{
         window.reload()
     })
