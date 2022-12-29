@@ -9,6 +9,7 @@ $(window).on("load",()=>{
     var fontsize = document.getElementById("fontsize")
     var fontfamily = document.getElementById("fontfamily")
     var selected_dest = "./";
+    var name_list = []
     
     function fileUpload(){
         ipcRenderer.send("file")
@@ -35,6 +36,27 @@ $(window).on("load",()=>{
         ctx.fillText(text, x2-((x2-x1)/2), y2-((y2-y1)/2))
     }
 
+    const updateList = ()=>{
+        var table = document.getElementById("name-table");
+        var tableBody = document.createElement("tbody");
+
+        for (let i=0;i<name_list.length;i++){
+            var row = document.createElement("tr");
+            var number = document.createElement("td");
+            number.innerText = (i+1).toString();
+
+            var name = document.createElement("td");
+            name.innerText = name_list[i];
+
+            row.appendChild(number);
+            row.appendChild(name);
+
+            tableBody.appendChild(row);
+        }
+        table.appendChild(tableBody);
+    }
+
+    updateList()
     
     
     img.onload = ()=>{
