@@ -125,6 +125,11 @@ $(window).on("load",()=>{
         selected_dest = data;
     })
 
+    ipcRenderer.on("new-name", (err,data)=>{
+        name_list.push(data);
+        updateList();
+    })
+
     $(".text-style").on("change", ()=>{
         ctx.drawImage(img,-1,-1, 474, 335)
         drawRectangle()
@@ -140,6 +145,10 @@ $(window).on("load",()=>{
     })
 
     $("#add-button").on("click", addName)
+
+    $("#import-button").on("click", ()=>{
+        ipcRenderer.send("import");
+    })
 
     document.getElementById("reset-button").addEventListener("click", ()=>{
         ipcRenderer.send("reset")

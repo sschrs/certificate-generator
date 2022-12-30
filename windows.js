@@ -1,4 +1,6 @@
 const { BrowserWindow, ipcMain, dialog } = require("electron")
+const fs = require('fs')
+const readline = require('readline')
 
 createWindow = (data, filepath)=>{
     const newWindow = new BrowserWindow(data)
@@ -36,12 +38,32 @@ exports.mainWindow = ()=>{
         })         
     })
 
+    ipcMain.on("import", async(event, arg)=>{
+        await dialog.showOpenDialog(window, {
+            properties: ["openFile"],
+            filters: [{name: "Text File", extensions: ["txt"]}]
+        }).then((result)=>{
+            file_path = result.filePaths[0]
+            list = [];
+            var rd = readline.createInterface({
+                input: fs.createReadStream(file_path),
+                output: process.stdout,
+                console: false
+            })
+            rd.on('line', line=>{
+                window.webContents.send("new-name",line);
+            })
+        })
+    })
+
     ipcMain.on("to-image", (err,data)=>{
         var base64Data = data.base64URL.replace(/^data:image\/png;base64,/, "");
         require("fs").writeFile(data.path + "/"+data.name+".png", base64Data, 'base64', function(err) {
             console.log(err);
         });
     })
+
+
 
     ipcMain.on("reset", ()=>{
         window.reload()
