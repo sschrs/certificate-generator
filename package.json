@@ -1,5 +1,6 @@
 {
   "name": "certificate_generator",
+  "productName": "Certificate Generator",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -8,7 +9,8 @@
   },
   "author": "Süleyman Özarslan",
   "license": "MIT",
-  "dependencies": {
-    "electron": "^21.2.3"
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "electron-packager": "^17.1.1"
   }
 }
