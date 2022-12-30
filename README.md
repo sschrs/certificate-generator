@@ -3,12 +3,14 @@ A simple certificate generator tool made with Electron.js. Lets you create certi
 
 <h2>Installation</h2>
 In Terminal:
+
 ```
 git clone https://github.com/sschrs/certificate-generator.git
 cd certificate-generator
 npm install
 npm start
 ```
+
 Note: You can also compile the application for your system using the electron-packager.
 
 <h2>Usage</h2>
