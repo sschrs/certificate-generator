@@ -10,7 +10,7 @@ $(window).on("load",()=>{
     let fontfamily = document.getElementById("fontfamily")
     var selected_dest = "./";
     let name_list = []
-    
+
     function fileUpload(){
         ipcRenderer.send("file")
     }
@@ -82,10 +82,14 @@ $(window).on("load",()=>{
     }
 
     const generate = ()=>{
+        let info = $("#info-text");
+        info.text("Generating...");
         name_list.forEach(name => {
             canvasToImage(name)
         });
+        info.text("Completed!")
     }
+    
 
 
     const addName = ()=>{
